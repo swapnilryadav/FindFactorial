@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factorial</title>
+    
+        <style>
+  * {
+    font-size: 40px;
+  }
+  body {
+    background-color: lightgreen;
+  }
+  .btn {
+    background-color: red;
+    color: white;
+    width: 20%;
+    margin-left: 2%;
+    border-radius: 20px;
+  }
+  .btn:hover {
+    color: blue;
+  }
+  #msg{
+    white-space: pre-wrap; /* Ensures long text wraps */
+    word-wrap: break-word; /* Breaks words if necessary */
+    line-height: 1.5;
+  }
+    </style>
+</head>
+<body>
+    <center>
+        <form onsubmit="FindFactorial()">
+            <br/><br/><br/>
+            <input type="number" id="num" placeholder="Enter a number" />
+            <br/><br/>
+            <input type="submit" value="M1" class="btn" />
+            <input type="submit" value="M2" class="btn" />
+            <input type="submit" value="M3" class="btn" />
+        </form>
+        <br/>
+        <div id="msg" style="font-size: 30px"></div>
+        <script>
+            function FindFactorial() {
+                event.preventDefault();
+                let num = document.getElementById("num");
+                let msg = document.getElementById("msg");
+
+                if(num.value===""){
+                    alert("Please enter a number");
+                    msg.innerHTML="";
+                    num.focus();
+                    return;
+                }
+                let n=parseInt(num.value);
+                
+                if (n < 0) {
+    alert("Please enter a valid number");
+    msg.innerHTML = "";
+    numInput.focus(); // Changed from num.focus() to numInput.focus() as 'num' is undefined
+    return;
+}
+
+let action = document.activeElement.value; // Correctly fetches the value of the active button
+let ans = "";
+
+if (action === "M1") {
+    let i = 1n, f = 1n;
+    while (i <= BigInt(n)) { // Corrected condition to include equality
+        f = f * i;
+        i++;
+    }
+    ans = "The factorial from M1: " + f.toString();
+    msg.innerHTML = ans;
+} else if (action === "M2") {
+    let i = 1n, f = 1n;
+    do {
+        f = f * i;
+        i++;
+    } while (i <= BigInt(n)); // Fixed loop condition
+    ans = "The factorial from M2: " + f.toString();
+    msg.innerHTML = ans;
+} else if (action === "M3") {
+    let f = 1n;
+    for (let i = 1n; i <= BigInt(n); i++) { // Ensured 'i' is a BigInt
+        f = f * i;
+    }
+    ans = "The factorial from M3: " + f.toString();
+    msg.innerHTML = ans;
+}
+            }
+        </script>
+    </center>
+</body>
+</html>
